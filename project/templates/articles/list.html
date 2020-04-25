@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <script>
+      $(function() {
+        $('a.delete').bind('click', function() {
+            $.ajax({
+                url: '/article/' + $(this).attr('id'),
+                type: 'DELETE',
+                success: function(result) {
+                    location.reload();
+                }
+            });
+        });
+      });
+    </script>
+    {% for article in articles %}
+      <li>
+          <a href="http://localhost:5000/article/{{ article.id }}">{{ article.title }}</a>
+          <a href="http://localhost:5000/article/{{ article.id }}/edit">edit</a>
+          <a href="#" class="delete" id={{article.id}}>delete</a>
+      </li>
+    {% endfor %}
+    <a href="{{url_for('article.create_article')}}">create</a>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<script>
+
+</script>
+
+<div class="article-form">
+    <h2>{{header_form}}</h2>
+    <form method="post">
+        <input type="hidden" name="_method" value="patch" />
+        <!-- title -->
+        <div class="field">
+            <label for="article_title">title:</label>
+            <input type="text" id="article_title" name="article_title" value="{{article_title}}"/>
+        </div>
+
+        <!-- Body -->
+        <div class="field">
+            <label for="article_body">body:</label>
+            <textarea type="text" id="article_body" name="article_body">{{article_body}}</textarea>
+        </div>
+
+        <!-- Publish? -->
+        <div class="checkbox">
+            <label for="article_publish">publish?:</label>
+            <input type="checkbox" id="article_publish" name="article_publish" {% if is_publish %}checked{% endif %}/>
+        </div>
+
+        <!-- Tag Entry -->
+        <div class="field">
+            <label for="article_tags">tags:</label>
+            <input type="text" id="article_tags" name="article_tags" values="{{article_tags}}"/>
+        </div>
+
+        <!-- Button -->
+        <button class="primary-button" type="submit" >{{submit_button}}</button>
+    </form>
+</div>
+{% endblock %}

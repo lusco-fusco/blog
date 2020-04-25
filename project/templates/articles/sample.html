@@ -1,0 +1,21 @@
+ <div class="articles">
+     <h2>Latest articles 🔥</h2>
+    {% for article in articles %}
+     <div class="article">
+        <a class="article-title" href="http://localhost:5000/article/{{ article.id }}">{{ article.title }}</a>
+         <div class="article-body">
+             {{article.body | truncate(250)}}
+         </div>
+         <div class="reactions">
+             <span class="number-reactions">{{article.get_number_of_reactions()}}</span>
+             <span class="idea {{ 'hide' if not article.check_unique_reactions('IDEA') }}" id="idea">💡</span>
+             <span class="bug {{ 'hide' if not article.check_unique_reactions('BUG') }}" id="bug">🐞</span>
+             <span class="clap {{ 'hide' if not article.check_unique_reactions('CLAP') }}" id="clap">👏</span>
+             <span class="love {{ 'hide' if not article.check_unique_reactions('LOVE') }}" id="love">💕</span>
+             <span class="party {{ 'hide' if not article.check_unique_reactions('PARTY') }}" id="party">🎉</span>
+             <span class="wizard {{ 'hide' if not article.check_unique_reactions('WIZARD') }}" id="wizard">🧙</span>
+         </div>
+     </div>
+    {% endfor %}
+    <a href="{{url_for('article.create_article')}}">create</a>
+ </div>

@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="home">
+        {% include 'articles/sample.html' %}
+        <a href="{{url_for('article.all_articles')}}">all articles</a>
+    </div>
+{% endblock %}

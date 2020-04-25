@@ -1,0 +1,151 @@
+:root {
+    --light-bg-color: #ffffff;
+    --dark-bg-color: #2e2e2d;
+    --accent-color: #ffd900;
+    --dark-text-color: #2e2e2d;
+    --light-text-color: #ffffff;
+    --neutral-10: #dedede;
+    --primary-font: 'Montserrat', sans-serif;
+    --secondary-font: 'Raleway', sans-serif;
+    --text-size: 18px;
+}
+
+html, body {
+    background-color: var(--light-bg-color);
+    color: var(--dark-text-color);
+    height: 100%;
+    font-family: var(--secondary-font);
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-text-color);
+}
+
+a:visited {
+    color: var(--dark-text-color);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.header, .footer {
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color);
+    padding: 12px;
+    height: 12px;
+}
+
+.header a.logo, .header a.logo:visited {
+    color: var(--light-text-color);
+    font-family: var(--primary-font);
+    font-weight: 700;
+}
+
+.content{
+    min-height: calc(100% - 72px);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.article {
+    border: 1px solid;
+    border-color: var(--neutral-10);
+    padding: 24px;
+    max-width: 680px;
+    margin-bottom: 12px;
+}
+
+.article-title{
+    font-size: 32px;
+    font-family: var(--primary-font);
+    font-weight: 700;
+}
+
+.article-body {
+    font-size: var(--text-size);
+    font-family: var(--secondary-font);
+    margin-top: 18px;
+}
+
+.article-info{
+    width: 100%;
+    font-size: var(--text-size);
+    line-height: 32px;
+    margin-top: 32px;
+}
+
+.articles, .article-form {
+    margin-top: 18px;
+    max-width: 680px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+form .field {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+form .checkbox {
+    padding: 8px;
+}
+
+form .field label {
+    margin-bottom: 6px;
+}
+
+.input {
+    background-color: transparent;
+    outline: none;
+}
+
+.primary-button {
+    border: none;
+    padding: px 4px;
+    background-color: var(--dark-bg-color);
+    color: var(--light-text-color)
+}
+
+.primary-button:hover {
+    box-shadow: 4px 4px 0px 0px var(--accent-color) ;
+}
+
+.emotions {
+    margin-top: 12px;
+}
+
+.emotion {
+    font-size: 28px;
+    padding: 8px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
+.reaction, .emotion:hover {
+    font-size: 32px;
+    filter: none;
+    -webkit-filter: none;
+}
+
+.reactions {
+    float: right;
+    margin-top: 4px;
+}
+
+.number-reactions {
+    font-weight: bold;
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,13 @@
+<div class="header">
+    <a href="/" class="logo">lusco-fusco</a>
+    <div style="float:right">
+        {% if session.get('logged_in') %}
+            <p>Hi: {{ session.get('user_name') }}</p>
+            <form action="{{url_for('auth.logout')}}" method="post">
+                <button type="submit" >Logout</button>
+            </form>
+        {% else %}
+            <a style="color:white" href="{{url_for('auth.login')}}">Login</a>
+        {% endif %}
+    </div>
+</div>

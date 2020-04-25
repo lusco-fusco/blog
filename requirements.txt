@@ -1,0 +1,10 @@
+environs
+flask
+flask_migrate
+flask_sqlalchemy
+flask_marshmallow
+marshmallow-sqlalchemy
+markdown
+jinja2
+psycopg2
+passlib

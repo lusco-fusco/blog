@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div>
+    <form method="post">
+        <!-- email -->
+        <div class="field">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" value="{{email}}"/>
+        </div>
+
+        <!-- password -->
+        <div class="field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="{{password}}"/>
+        </div>
+
+        <!-- password confirm -->
+        <div class="field">
+            <label for="password_confirm">Password confirm:</label>
+            <input type="password" id="password_confirm" name="password_confirm" value="{{password_confirm}}"/>
+        </div>
+
+        <!-- First name -->
+        <div class="field">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="{{first_name}}"/>
+        </div>
+
+        <!-- Last name -->
+        <div class="field">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="{{last_name}}"/>
+        </div>
+
+        <!-- Button -->
+        <button class="primary-button" type="submit" >{{submit_button}}</button>
+    </form>
+</div>
+{% endblock %}

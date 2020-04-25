@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div>
+    <form method="post">
+        <!-- email -->
+        <div class="field">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" value="{{email}}"/>
+        </div>
+
+        <!-- password -->
+        <div class="field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="{{password}}"/>
+        </div>
+
+        <!-- Button -->
+        <button class="primary-button" type="submit" >{{submit_button}}</button>
+    </form>
+    <a href="{{url_for('user.register')}}">register</a>
+</div>
+{% endblock %}
