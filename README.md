@@ -1,4 +1,4 @@
-# Blog
+# Blog ![CD/CI](https://github.com/lusco-fusco/blog/workflows/CD/CI/badge.svg)
 Our custom blog
 
 ## 👩‍💻👨‍💻 Development notes
