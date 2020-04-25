@@ -19,6 +19,12 @@ jobs:
             python -m pip install --upgrade pip
             pip install -r requirements.txt
         - name: Migrate database schema
+          env:
+            DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+            DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+            DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+            DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+            DATABASE_USER: ${{ secrets.DATABASE_USER }}
           run: |
             flask db upgrade
         - name: Build Docker Image
