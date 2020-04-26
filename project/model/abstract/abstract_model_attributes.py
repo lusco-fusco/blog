@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 from project import db
 from sqlalchemy import DateTime
 from sqlalchemy.sql import func
@@ -22,7 +23,7 @@ class AbstractModelWithAttributes(AbstractModel, object):
     id = db.Column(db.String(40), default=_generate_uuid, primary_key=True)
     creation_date = db.Column(DateTime(timezone=True), default=func.now(), nullable=False)
     modification_date = db.Column(DateTime(timezone=True), nullable=True)
-    remove_date = db.Column(DateTime(timezone=True), default=func.now(), nullable=False)    # TODO: change default
+    remove_date = db.Column(DateTime(timezone=True), default=datetime.min, nullable=False)
     enabled = db.Column(db.Boolean(), default=True, nullable=False)
 
     @staticmethod
