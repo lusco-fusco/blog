@@ -45,3 +45,8 @@ class AbstractModelWithAttributes(AbstractModel, object):
         self.enabled = False
         self.remove_date = func.now()
         self.insert()
+
+    def restore(self):
+        self.enabled = True
+        self.remove_date = datetime.min
+        self.insert()

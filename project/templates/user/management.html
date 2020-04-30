@@ -5,7 +5,7 @@
       $(function() {
         $('a.delete').bind('click', function() {
             $.ajax({
-                url: '/article/' + $(this).attr('id'),
+                url: '/user/' + $(this).attr('id'),
                 type: 'DELETE',
                 success: function(result) {
                     location.reload();
@@ -17,7 +17,7 @@
       $(function() {
         $('a.restore').bind('click', function() {
             $.ajax({
-                url: '/article/' + $(this).attr('id') + '/restore',
+                url: '/user/' + $(this).attr('id') + '/restore',
                 type: 'PATCH',
                 success: function(result) {
                     location.reload();
@@ -26,26 +26,29 @@
         });
       });
     </script>
-    <div>
-        <a href="{{url_for('article.create')}}">create</a>
-    </div>
-    <!-- Article table -->
+
+    <!-- User table -->
     <table>
         <tr>
-            <th>article_id</th>
+            <th>email</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>role</th>
             <th>enabled?</th>
             <th>actions</th>
         </tr>
-        {% for article in articles %}
+        {% for user in users %}
             <tr>
-                <td><a href="{{url_for('article.details', article_id=article.id)}}">{{ article.title }}</a></td>
-                <td><span>{{ article.enabled }}</span></td>
+                <td><span>{{ user.email }}</span></td>
+                <td><span>{{ user.first_name }}</span></td>
+                <td><span>{{ user.last_name }}</span></td>
+                <td><span>{{ user.role.name }}</span></td>
+                <td><span>{{ user.enabled }}</span></td>
                 <td>
-                    <a href="{{url_for('article.edit', article_id=article.id)}}">edit</a>
-                    {% if article.enabled %}
-                        <a href="#" class="delete" id={{article.id}}>delete</a>
+                    {% if user.enabled %}
+                        <a href="#" class="delete" id={{user.id}}>delete</a>
                     {% else %}
-                        <a href="#" class="restore" id={{article.id}}>restore</a>
+                        <a href="#" class="restore" id={{user.id}}>restore</a>
                     {% endif %}
                 </td>
             </tr>

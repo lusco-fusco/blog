@@ -1,3 +1,21 @@
+<script>
+function myFunction() {
+  document.getElementById("adminDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 <div class="header">
     <a href="/" class="logo">lusco-fusco</a>
     <div style="float:right">
@@ -6,6 +24,16 @@
             <form action="{{url_for('auth.logout')}}" method="post">
                 <button type="submit" >Logout</button>
             </form>
+            <!-- Admin DropDown -->
+            {% if session.get('is_admin') %}
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Admin</button>
+                    <div id="adminDropdown" class="dropdown-content">
+                        <a href="{{url_for('article.list_all')}}">Articles</a>
+                        <a href="{{url_for('user.list_all')}}">Users</a>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
             <a style="color:white" href="{{url_for('auth.login')}}">Login</a>
         {% endif %}
