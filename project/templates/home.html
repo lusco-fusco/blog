@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="home">
-        {% include 'articles/sample.html' %}
-        <a href="{{url_for('article.all_articles')}}">all articles</a>
+        {% include 'articles/list_published.html' %}
+        <a href="{{url_for('article.list_all')}}">all articles</a>
     </div>
 {% endblock %}

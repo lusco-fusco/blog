@@ -16,7 +16,7 @@ def only_anonymous(fn):
     def inner(*args, **kwargs):
         if session.get('logged_in') is None:
             return fn(*args, **kwargs)
-        return redirect(url_for('home.all_articles'))
+        return redirect(url_for('home.list_publish_articles'))
     return inner
 
 
@@ -25,7 +25,7 @@ def login_required(fn):
     def inner(*args, **kwargs):
         if session.get('logged_in'):
             return fn(*args, **kwargs)
-        return redirect(url_for('home.all_articles', next=request.path))
+        return redirect(url_for('home.list_publish_articles', next=request.path))
     return inner
 
 
@@ -34,7 +34,7 @@ def admin_required(fn):
     def inner(*args, **kwargs):
         if session.get('is_admin'):
             return fn(*args, **kwargs)
-        return redirect(url_for('home.all_articles'))
+        return redirect(url_for('home.list_publish_articles'))
     return inner
 
 # --------------------------------
@@ -56,7 +56,7 @@ def login():
             # session.set_cookie('user_id', user.id)
             session['is_admin'] = user.is_admin()
             flash('You are now logged in.', 'success')
-            return redirect(next_url or url_for('home.all_articles'))
+            return redirect(next_url or url_for('home.list_publish_articles'))
         else:
             flash('Incorrect email or password.', 'danger')
     return render_template('auth/login.html', next_url=next_url)
@@ -67,4 +67,4 @@ def login():
 def logout():
     session.clear()
     flash('You have been logged out', 'info')
-    return redirect(url_for('home.all_articles'))
+    return redirect(url_for('home.list_publish_articles'))

@@ -2,7 +2,7 @@
      <h2>Latest articles 🔥</h2>
     {% for article in articles %}
      <div class="article">
-        <a class="article-title" href="{{url_for('article.single_article', article_id=article.id)}}">{{ article.title }}</a>
+        <a class="article-title" href="{{url_for('article.details', article_id=article.id)}}">{{ article.title }}</a>
          <div class="article-body">
              {{article.body | truncate(250)}}
          </div>
@@ -17,5 +17,5 @@
          </div>
      </div>
     {% endfor %}
-    <a href="{{url_for('article.create_article')}}">create</a>
+    <a href="{{url_for('article.create')}}">create</a>
  </div>

@@ -15,7 +15,7 @@ def create(article_id):
     if Article.find_one({'id': article_id, 'is_publish': True, 'enabled': True}) is not None:
         Comment(article_id=article_id, user_id=session.get('user_id'), text=request.form.get('comment_text')).create()
         db.session.commit()
-    return redirect(url_for('article.single_article', article_id=article_id))
+    return redirect(url_for('article.details', article_id=article_id))
 
 
 @comment_blueprint.route('/comment/<comment_id>', methods=['DELETE'])
