@@ -44,6 +44,8 @@ def update_password():
             current_user.hash_password(request.form.get("password"))
             current_user.update()
             db.session.commit()
+            flash('Password updated', 'error')
+            return redirect(url_for('profile.details'))
         else:
             flash('Password does not match', 'error')
             return redirect(url_for('profile.update_password'))
