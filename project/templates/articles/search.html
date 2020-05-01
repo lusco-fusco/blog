@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="articles">
+     <h2>{{ articles|length }} results looking for:</h2>
+     <ul>
+         {% if 'title' in filters %}
+            <li>{{ filters.get('title') }}</li>
+         {% elif 'writer' in filters %}
+            <li>Author: {{ filters.get('writer') }}</li>
+         {% endif %}
+     </ul>
+    {% for article in articles %}
+         <div class="article">
+            <a class="article-title" href="{{url_for('article.details', article_id=article.id)}}">{{ article.title }}</a>
+             <div class="article-body">
+                 {{ article.body | truncate(250) }}
+             </div>
+         </div>
+    {% endfor %}
+ </div>
+{% endblock %}

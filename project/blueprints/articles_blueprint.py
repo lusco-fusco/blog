@@ -76,3 +76,18 @@ def create():
         article.create()
         db.session.commit()
         return redirect(url_for('article.details', article_id=article.id))
+
+
+@article_blueprint.route('/article/search', methods=['GET'])
+def search():
+    filters = dict()
+    q = request.args.get('q')
+    writer = request.args.get('writer')
+    # TODO: tag = request.args.get('tag')
+    if q is not None:
+        filters['title'] = q
+        filters['body'] = q
+    if writer is not None:
+        filters['writer'] = writer
+    articles = Article.find_all(filters)
+    return render_template('articles/search.html', filters=filters, articles=articles)
