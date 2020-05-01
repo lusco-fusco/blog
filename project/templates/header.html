@@ -1,5 +1,5 @@
 <script>
-function myFunction() {
+function showDropdown() {
   document.getElementById("adminDropdown").classList.toggle("show");
 }
 
@@ -27,7 +27,7 @@ window.onclick = function(event) {
             <!-- Admin DropDown -->
             {% if session.get('is_admin') %}
                 <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Admin</button>
+                    <button onclick="showDropdown()" class="dropbtn">Admin</button>
                     <div id="adminDropdown" class="dropdown-content">
                         <a href="{{url_for('article.list_all')}}">Articles</a>
                         <a href="{{url_for('user.list_all')}}">Users</a>
