@@ -38,9 +38,3 @@ def register():
 @only_anonymous
 def retrieve_password():
     pass
-
-
-@user_blueprint.route('/update-password', methods=['GET', 'POST'])
-@login_required
-def update_password():
-    pass

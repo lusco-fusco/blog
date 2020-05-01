@@ -34,6 +34,7 @@ from project.blueprints.auth_blueprint import auth_blueprint
 from project.blueprints.reaction_blueprint import reaction_blueprint
 from project.blueprints.comment_blueprint import comment_blueprint
 from project.blueprints.tag_blueprint import tag_blueprint
+from project.blueprints.profile_blueprint import profile_blueprint
 
 app.register_blueprint(home_blueprint)
 app.register_blueprint(article_blueprint)
@@ -42,6 +43,7 @@ app.register_blueprint(auth_blueprint)
 app.register_blueprint(reaction_blueprint)
 app.register_blueprint(comment_blueprint)
 app.register_blueprint(tag_blueprint)
+app.register_blueprint(profile_blueprint)
 
 # --------------------------------
 # Error handlers
