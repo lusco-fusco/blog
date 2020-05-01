@@ -42,3 +42,7 @@ class User(db.Model, AbstractModelWithAttributes):
             query = query.filter_by(first_name=filters['first_name'])
 
         return query
+
+    @staticmethod
+    def is_email_available(email):
+        return User.find_one({'email': email, 'enabled': True}) is None

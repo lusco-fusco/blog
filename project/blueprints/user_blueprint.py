@@ -39,7 +39,6 @@ def register():
 def retrieve_password():
     pass
 
-
 @user_blueprint.route('/update-password', methods=['GET', 'POST'])
 @login_required
 def update_password():
@@ -68,3 +67,4 @@ def restore(user_id):
     user.restore()
     db.session.commit()
     return 200
+  
