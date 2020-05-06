@@ -26,6 +26,9 @@ class Article(db.Model, AbstractModelWithAttributes):
             query = query.filter(Article.title.ilike('%{}%'.format(filters['title'])))
         if 'body' in filters:
             query = query.filter(Article.body.ilike('%{}%'.format(filters['body'])))
+        if 'q' in filters:
+            query = query.filter(Article.body.ilike('%{}%'.format(filters['q']))
+                                 | Article.title.ilike('%{}%'.format(filters['q'])))
         if 'writer' in filters:
             query = query.filter_by(writer=filters['writer'])
         return query

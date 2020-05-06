@@ -85,9 +85,9 @@ def search():
     writer = request.args.get('writer')
     # TODO: tag = request.args.get('tag')
     if q is not None:
-        filters['title'] = q
-        filters['body'] = q
+        filters['q'] = q
     if writer is not None:
         filters['writer'] = writer
+    filters['is_publish'] = True
     articles = Article.find_all(filters)
     return render_template('articles/search.html', filters=filters, articles=articles)

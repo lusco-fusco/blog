@@ -149,3 +149,14 @@ form .field label {
 .hide {
     display: none;
 }
+
+/* =========================== */
+/* Search bar                  */
+/* =========================== */
+.search-bar {
+    width: 20%;
+    margin-left: 42%;
+}
+.search-bar form {
+    flex-direction: unset;
+}
