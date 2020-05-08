@@ -9,7 +9,7 @@ from project.model.reaction import Reaction
 article_blueprint = Blueprint('article', __name__)
 
 
-@article_blueprint.route('/article', methods=['GET'])
+@article_blueprint.route('/article/all', methods=['GET'])
 @admin_required
 def list_all():
     return render_template('articles/management.html', articles=Article.find_all())

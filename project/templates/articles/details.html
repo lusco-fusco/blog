@@ -33,43 +33,58 @@ $(function() {
 </script>
 
 <div class="article-info">
-    <h1 class="article-title">{{title}}</h1>
+    <h1>{{title}}</h1>
+    <h4>Subtitle: Lorem ipsuummmmmmm</h4>
     <div><span>{{creation_date.strftime('%d-%m-%Y')}}</span></div>
     <p class="article-body">{{body}}</p>
+
+     <!-- Emotions -->
     <div class="emotions">
-        <a href="#" class="emotion idea {{ 'reaction' if user_reaction == 'IDEA' }}" id="idea">💡{{reactions.get('IDEA', 0)}}</a>
-        <a href="#" class="emotion bug {{ 'reaction' if user_reaction == 'BUG' }}" id="bug">🐞{{reactions.get('BUG', 0)}}</a>
-        <a href="#" class="emotion clap {{ 'reaction' if user_reaction == 'CLAP' }}" id="clap">👏{{reactions.get('CLAP', 0)}}</a>
-        <a href="#" class="emotion love {{ 'reaction' if user_reaction == 'LOVE' }}" id="love">💕{{reactions.get('LOVE', 0)}}</a>
-        <a href="#" class="emotion party {{ 'reaction' if user_reaction == 'PARTY' }}" id="party">🎉{{reactions.get('PARTY', 0)}}</a>
-        <a href="#" class="emotion wizard {{ 'reaction' if user_reaction == 'WIZARD' }}" id="wizard">🧙{{reactions.get('WIZARD', 0)}}</a>
+        <a href="#" class="emotion idea {{ 'reaction' if user_reaction == 'IDEA' }}"
+            id="idea">💡{{reactions.get('IDEA', 0)}}</a>
+        <a href="#" class="emotion bug {{ 'reaction' if user_reaction == 'BUG' }}"
+            id="bug">🐞{{reactions.get('BUG', 0)}}</a>
+        <a href="#" class="emotion clap {{ 'reaction' if user_reaction == 'CLAP' }}"
+            id="clap">👏{{reactions.get('CLAP', 0)}}</a>
+        <a href="#" class="emotion love {{ 'reaction' if user_reaction == 'LOVE' }}"
+            id="love">💕{{reactions.get('LOVE', 0)}}</a>
+        <a href="#" class="emotion party {{ 'reaction' if user_reaction == 'PARTY' }}"
+            id="party">🎉{{reactions.get('PARTY', 0)}}</a>
+        <a href="#" class="emotion wizard {{ 'reaction' if user_reaction == 'WIZARD' }}"
+            id="wizard">🧙{{reactions.get('WIZARD', 0)}}</a>
     </div>
-    <div class="comments">
-        <span>Comments:</span>
+
+
+    <section class="comments-section">
+        <h4>Comments:</h4>
         <form action="{{url_for('comment.create', article_id=id)}}" method="post">
-            <!-- Comment -->
+            <!-- Comment form -->
             <div class="field">
-                <label for="comment_text">give ud your opinion:</label>
-                <textarea type="text" id="comment_text" name="comment_text"></textarea>
+                <label for="comment_text">Give us your opinion:</label>
+                <textarea type="text" id="comment_text" name="comment_text" rows="5"></textarea>
             </div>
             <!-- Button -->
-            <button class="primary-button" type="submit" >Comment!</button>
+            <button class="primary-button" type="submit">Comment!</button>
         </form>
         <!-- List all comments -->
-        {% for comment in comments %}
         <div class="comments">
+            {% for comment in comments %}
             <li>
                 <div class="comment">
-                    <span>{{comment.text}}</span>
-                    <span>{{comment.creation_date.strftime('%d-%m-%Y')}}</span>
-                    <span>{{comment.commenter.first_name}}</span>
-                    {% if session.get('is_admin') or comment.user_id == session.get('user_id') %}
-                        <a href="#" class="delete" id={{comment.id}}>delete</a>
-                    {% endif %}
+                    <div class="comment-actions">
+                        {% if session.get('is_admin') or comment.user_id == session.get('user_id') %}
+                        <a href="#" class="delete" id={{comment.id}}>🗑️</a>
+                        {% endif %}
+                    </div>
+                    <p>{{comment.text}}</p>
+                    <div class="comment-author">
+                        <span>{{comment.commenter.first_name}}</span>
+                        <span>{{comment.creation_date.strftime('%d-%m-%Y')}}</span>
+                    </div>
                 </div>
             </li>
+            {% endfor %}
         </div>
-    {% endfor %}
-    </div>
+    </section>
 </div>
 {% endblock %}

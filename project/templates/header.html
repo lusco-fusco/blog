@@ -17,25 +17,35 @@ window.onclick = function(event) {
 }
 </script>
 <div class="header">
-    <a href="/" class="logo">lusco-fusco</a>
-    <div style="float:right">
+    <!-- Logo -->
+    <a href="/" class="logo" ><image class="logo" src="/static/images/luscofusco_logotipo_B_Y.svg" alt="luscofusco logo"></image></a>
+    
+    <!-- User actions -->
+    <div class="user">
         {% if session.get('logged_in') %}
-        <p>Hi: <a style="color:white"href="{{url_for('profile.details')}}">{{ session.get('user_name') }}</a></p>
-            <form action="{{url_for('auth.logout')}}" method="post">
-                <button type="submit" >Logout</button>
-            </form>
-            <!-- Admin DropDown -->
-            {% if session.get('is_admin') %}
-                <div class="dropdown">
-                    <button onclick="showDropdown()" class="dropbtn">Admin</button>
-                    <div id="adminDropdown" class="dropdown-content">
-                        <a href="{{url_for('article.list_all')}}">Articles</a>
-                        <a href="{{url_for('user.list_all')}}">Users</a>
-                    </div>
-                </div>
-            {% endif %}
+        <!-- Profile link -->
+          <span>Hi! <a href="{{url_for('profile.details')}}">{{ session.get('user_name') }}</a>
+          </span>
+        
+          <!-- Admin DropDown -->
+          {% if session.get('is_admin') %}
+              <div class="dropdown">
+                  <button onclick="showDropdown()" class="dropbtn no-button link">Admin</button>
+                  <div id="adminDropdown" class="dropdown-content">
+                      <a href="{{url_for('article.list_all')}}">Articles</a>
+                      <a href="{{url_for('user.list_all')}}">Users</a>
+                  </div>
+              </div>
+          {% endif %}
+
+        <!-- Logout -->
+        <form class="logout" action="{{url_for('auth.logout')}}" method="post">
+          <button class="no-button link" type="submit">Logout</button>
+        </form>
+
         {% else %}
-            <a style="color:white" href="{{url_for('auth.login')}}">Login</a>
+        <!-- Login -->
+        <a href="{{url_for('auth.login')}}">Login</a>
         {% endif %}
     </div>
 </div>

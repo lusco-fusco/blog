@@ -1,11 +1,9 @@
- <div class="articles">
-     <h2>Latest articles 🔥</h2>
+<section class="articles">
+    <h2>Latest articles 🔥</h2>
     {% for article in articles %}
      <div class="article">
-        <a class="article-title" href="{{url_for('article.details', article_id=article.id)}}">{{ article.title }}</a>
-         <div class="article-body">
-             {{article.body | truncate(250)}}
-         </div>
+        <a class="article-title" href="{{url_for('article.details', article_id=article.id)}}"><h4>{{ article.title }}</h4></a>
+         <p class="article-body">{{article.body | truncate(250)}}</p>
          <div class="reactions">
              <span class="number-reactions">{{article.get_number_of_reactions()}}</span>
              <span class="idea {{ 'hide' if not article.check_unique_reactions('IDEA') }}" id="idea">💡</span>
@@ -17,4 +15,4 @@
          </div>
      </div>
     {% endfor %}
- </div>
+</section>

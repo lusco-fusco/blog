@@ -1,18 +1,25 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
-<div class="profile">
-    <h2>{{current_user.email}}</h2>
-    <p>{{current_user.first_name}}</p>
-    <p>{{current_user.last_name}}</p>
-    <p>{{current_user.role.name}}</p>
-    <div>
-        <p><a href="{{url_for('profile.update_details')}}">edit your account</a></p>
-        <p><a href="{{url_for('profile.update_password')}}">change password</a></p>
-        <form action="{{url_for('profile.delete')}}" method="post">
-                <button type="submit" >delete</button>
-        </form>
+    <div class="cover"> 
+        <image src="static/images/andrea_avatar.svg" alt="avatar"></image>
     </div>
-</div>
+    <section class="account">
+        <h2>{{current_user.first_name}} {{current_user.last_name}}</h2>
+        <h5>Email:</h5>
+        <span>{{current_user.email}}</span>
+        <h5>Role:</h5>
+        <span>{{current_user.role.name}}</span>
+        
+        <section>
+            <h5>You can...</h5>
+                <div class="actions">
+                    <a href="{{url_for('profile.update_password')}}" class="password">🔑 change password</a>
+                    <a href="{{url_for('profile.update_details')}}" class="edit">✏️ Edit profile</a>
+                    <form action="{{url_for('profile.delete')}}" method="post" class="delete">
+                            <button type="submit" class="no-button link" >🗑️ Delete account</button>
+                    </form>
+                </div>
+        </section>
+    </section>
 {% endblock %}
