@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="articles">
-     <h2>{{ articles|length }} results looking for:</h2>
+     <h2>{{ articles | length }} results looking for:</h2>
      <ul>
          {% if 'title' in filters %}
             <li>{{ filters.get('title') }}</li>
