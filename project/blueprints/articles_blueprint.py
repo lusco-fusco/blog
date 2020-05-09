@@ -9,10 +9,10 @@ from project.model.reaction import Reaction
 article_blueprint = Blueprint('article', __name__)
 
 
-@article_blueprint.route('/articles', methods=['GET'])
+@article_blueprint.route('/article/all', methods=['GET'])
+@admin_required
 def list_all():
-    articles = Article.find_all({'enabled': True})
-    return render_template('articles/management.html', articles=articles)
+    return render_template('articles/management.html', articles=Article.find_all())
 
 
 @article_blueprint.route('/article/<article_id>', methods=['GET'])
@@ -40,6 +40,15 @@ def delete(article_id):
     article.soft_delete()
     db.session.commit()
     return '', 204
+
+
+@article_blueprint.route('/article/<article_id>/restore', methods=['PATCH'])
+@admin_required
+def restore(article_id):
+    article = Article.find_one({'id': article_id})
+    article.restore()
+    db.session.commit()
+    return '', 200
 
 
 @article_blueprint.route('/article/<article_id>/edit', methods=['GET', 'POST'])

@@ -48,7 +48,7 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         user = User.find_one({'email': email, 'enabled': True})
-        if user.verify_password(password):
+        if user is not None and user.verify_password(password):
             session['logged_in'] = True
             session['user_id'] = user.id
             session['user_name'] = user.first_name

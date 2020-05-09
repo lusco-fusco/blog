@@ -44,25 +44,3 @@ docker-compose up -d app
 * 🐙 Docker Compose
 * 🐘 Dbeaver (recommed to do queries against Postgres)
 
-## ✏🗒TODO list
-
-* User
-  * user's profile 
-  * edit user details
-  * update password
-  * delete my account
-  * Recommend articles
-  * Retrieve my account
-* Roles
-  * Populate database if there is no roles in database
-* Article
-  * Tag articles
-  * Recommend similar articles
-  * Search by tags, author or raw text
-  * Publish button
-  * add pagination in home page, all articles page and comments
-  * Render markdown as html
-  * add markdown editor in creation article page
-  * Create tag in article creation
-* Reactions
-  * Add animations to reactions emotions

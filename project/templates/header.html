@@ -1,19 +1,59 @@
+<script>
+function showDropdown() {
+  document.getElementById("adminDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 <div class="header">
-    <a href="/" class="logo">lusco-fusco</a>
+    <!-- Logo -->
+    <a href="/" ><image class="logo" src="/static/images/luscofusco_logotipo_B_Y.svg" alt="luscofusco logo"></image></a>
+    
+    <!-- Search bar -->
     <div class="search-bar">
         <form action="{{ url_for('article.search') }}">
           <input type="text" placeholder="Search.." name="q">
           <button class="search-button" type="submit">🔍</button>
         </form>
     </div>
-    <div style="float:right">
+  
+    <!-- User actions -->
+    <div class="user">
         {% if session.get('logged_in') %}
-            <p>Hi: {{ session.get('user_name') }}</p>
-            <form action="{{url_for('auth.logout')}}" method="post">
-                <button type="submit" >Logout</button>
-            </form>
+        <!-- Profile link -->
+          <span>Hi! <a href="{{url_for('profile.details')}}">{{ session.get('user_name') }}</a>
+          </span>
+        
+          <!-- Admin DropDown -->
+          {% if session.get('is_admin') %}
+              <div class="dropdown">
+                  <button onclick="showDropdown()" class="dropbtn no-button link">Admin</button>
+                  <div id="adminDropdown" class="dropdown-content">
+                      <a href="{{url_for('article.list_all')}}">Articles</a>
+                      <a href="{{url_for('user.list_all')}}">Users</a>
+                  </div>
+              </div>
+          {% endif %}
+
+        <!-- Logout -->
+        <form class="logout" action="{{url_for('auth.logout')}}" method="post">
+          <button class="no-button link" type="submit">Logout</button>
+        </form>
+
         {% else %}
-            <a style="color:white" href="{{url_for('auth.login')}}">Login</a>
+        <!-- Login -->
+        <a href="{{url_for('auth.login')}}">Login</a>
         {% endif %}
     </div>
 </div>
