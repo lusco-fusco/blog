@@ -160,3 +160,7 @@ form .field label {
 .search-bar form {
     flex-direction: unset;
 }
+
+.search-button {
+    margin-left: 6px;
+}
