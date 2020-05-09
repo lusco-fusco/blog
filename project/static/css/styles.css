@@ -560,7 +560,6 @@ img {
 /********** Search bar **********/
 .search-bar {
     width: 20%;
-    margin-left: 42%;
 }
 .search-bar form {
     flex-direction: unset;
@@ -568,3 +567,9 @@ img {
 
 .search-button {
     margin-left: 6px;
+    border: none;
+}
+
+.search-input {
+    color: var(--accent-color);
+}

@@ -23,8 +23,8 @@ window.onclick = function(event) {
     <!-- Search bar -->
     <div class="search-bar">
         <form action="{{ url_for('article.search') }}">
-          <input type="text" placeholder="Search.." name="q">
-          <button class="search-button" type="submit">🔍</button>
+          <input class="search-input" type="text" placeholder="Search.." name="q" />
+          <button class="search-button link" type="submit">🔍</button>
         </form>
     </div>
   
