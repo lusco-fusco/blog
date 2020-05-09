@@ -20,6 +20,14 @@ window.onclick = function(event) {
     <!-- Logo -->
     <a href="/" ><image class="logo" src="/static/images/luscofusco_logotipo_B_Y.svg" alt="luscofusco logo"></image></a>
     
+    <!-- Search bar -->
+    <div class="search-bar">
+        <form action="{{ url_for('article.search') }}">
+          <input class="search-input" type="text" placeholder="Search.." name="q" />
+          <button class="search-button link" type="submit">🔍</button>
+        </form>
+    </div>
+  
     <!-- User actions -->
     <div class="user">
         {% if session.get('logged_in') %}

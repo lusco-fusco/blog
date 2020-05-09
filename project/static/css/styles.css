@@ -443,8 +443,6 @@ a.logo {
 }
 
 
-
-
 /********** Dropdown **********/
 
 .dropdown {
@@ -555,4 +553,24 @@ img {
 .edit, .delete, .restore {
     width: fit-content;
     margin-left: 24px;
+}
+
+
+
+/********** Search bar **********/
+
+.search-bar {
+    width: 20%;
+}
+.search-bar form {
+    flex-direction: unset;
+}
+
+.search-button {
+    margin-left: 6px;
+    border: none;
+}
+
+.search-input {
+    color: var(--accent-color);
 }
