@@ -252,7 +252,7 @@ textarea:focus, input:focus {
 }
 
 .content {
-    min-height: calc(100% - 102px);
+    min-height: calc(100% - 116px);
     display: flex;
     width: 100%;
     justify-content: center;
@@ -286,9 +286,15 @@ textarea:focus, input:focus {
     color: var(--light-text-color);
 }
 
+.header a:hover, .header .link:hover{
+    background-size: 4px 50px;
+    color: var(--dark-color);
+}
+
 .logo {
     height: 45px;
     width: auto;
+    padding: 2px;
 }
 
 a.logo {
@@ -546,7 +552,7 @@ img {
     align-items: center;
 }
 
-.edit, .delete {
+.edit, .delete, .restore {
     width: fit-content;
     margin-left: 24px;
 }
