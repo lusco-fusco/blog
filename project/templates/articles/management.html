@@ -26,29 +26,33 @@
         });
       });
     </script>
-    <div>
-        <a href="{{url_for('article.create')}}">create</a>
-    </div>
-    <!-- Article table -->
-    <table>
-        <tr>
-            <th>article_id</th>
-            <th>enabled?</th>
-            <th>actions</th>
-        </tr>
-        {% for article in articles %}
+
+    <section>
+        <div>
+            <a href="{{url_for('article.create')}}">➕ create</a>
+        </div>
+        <!-- Article table -->
+        <table>
             <tr>
-                <td><a href="{{url_for('article.details', article_id=article.id)}}">{{ article.title }}</a></td>
-                <td><span>{{ article.enabled }}</span></td>
-                <td>
-                    <a href="{{url_for('article.edit', article_id=article.id)}}">edit</a>
-                    {% if article.enabled %}
-                        <a href="#" class="delete" id={{article.id}}>delete</a>
-                    {% else %}
-                        <a href="#" class="restore" id={{article.id}}>restore</a>
-                    {% endif %}
-                </td>
+                <th>Article title</th>
+                <th>Published?</th>
+                <th>Actions</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for article in articles %}
+                <tr>
+                    <td><a href="{{url_for('article.details', article_id=article.id)}}">{{ article.title }}</a></td>
+                    <td><span>{{ article.enabled }}</span></td>
+                    <td>
+                        <a href="{{url_for('article.edit', article_id=article.id)}}">✏️</a>
+                        {% if article.enabled %}
+                            <a href="#" class="delete" id={{article.id}}>🗑️</a>
+                        {% else %}
+                            <a href="#" class="restore" id={{article.id}}>💱</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+   
 {% endblock %}

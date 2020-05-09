@@ -12,26 +12,34 @@
         <input type="hidden" name="_method" value="patch" />
         <!-- title -->
         <div class="field">
-            <label for="article_title">title:</label>
+            <label for="article_title">Article title:</label>
             <input type="text" id="article_title" name="article_title" value="{{article_title}}"/>
         </div>
 
         <!-- Body -->
         <div class="field">
-            <label for="article_body">body:</label>
-            <textarea type="text" id="article_body" name="article_body">{{article_body}}</textarea>
+            <label for="article_body">Article content:</label>
+            <textarea type="text" id="article_body" name="article_body" rows="20">{{article_body}}</textarea>
         </div>
 
         <!-- Publish? -->
-        <div class="checkbox">
-            <label for="article_publish">publish?:</label>
-            <input type="checkbox" id="article_publish" name="article_publish" {% if is_publish %}checked{% endif %}/>
+        
+        <div class="is-published">
+            <span>Publish article?</span>
+            <div>
+                <label class="checkbox path">
+                    <input type="checkbox" id="article_publish" name="article_publish" {% if is_publish %}checked{% endif %}>
+                    <svg viewBox="0 0 21 21">
+                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                    </svg>
+                </label>
+            </div>
         </div>
 
         <!-- Tag Entry -->
         <div class="field">
-            <label for="article_tags">tags:</label>
-            <input type="text" id="article_tags" name="article_tags" values="{{article_tags}}"/>
+            <label for="article_tags">Tags:</label>
+            <input class="checkbox" type="text" id="article_tags" name="article_tags" values="{{article_tags}}"/>
         </div>
 
         <!-- Button -->

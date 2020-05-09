@@ -26,32 +26,34 @@
         });
       });
     </script>
-
-    <!-- User table -->
-    <table>
-        <tr>
-            <th>email</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>role</th>
-            <th>enabled?</th>
-            <th>actions</th>
-        </tr>
-        {% for user in users %}
+    
+    <section>
+        <!-- User table -->
+        <table>
             <tr>
-                <td><span>{{ user.email }}</span></td>
-                <td><span>{{ user.first_name }}</span></td>
-                <td><span>{{ user.last_name }}</span></td>
-                <td><span>{{ user.role.name }}</span></td>
-                <td><span>{{ user.enabled }}</span></td>
-                <td>
-                    {% if user.enabled %}
-                        <a href="#" class="delete" id={{user.id}}>delete</a>
-                    {% else %}
-                        <a href="#" class="restore" id={{user.id}}>restore</a>
-                    {% endif %}
-                </td>
+                <th>Email</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Role</th>
+                <th>Enabled?</th>
+                <th>Actions</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for user in users %}
+                <tr>
+                    <td><span>{{ user.email }}</span></td>
+                    <td><span>{{ user.first_name }}</span></td>
+                    <td><span>{{ user.last_name }}</span></td>
+                    <td><span>{{ user.role.name }}</span></td>
+                    <td><span>{{ user.enabled }}</span></td>
+                    <td>
+                        {% if user.enabled %}
+                            <a href="#" class="delete" id={{user.id}}>🗑️</a>
+                        {% else %}
+                            <a href="#" class="restore" id={{user.id}}>💱</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
 {% endblock %}
