@@ -26,6 +26,7 @@ def details(article_id):
     return render_template('articles/details.html',
                            id=article_id,
                            title=article.title,
+                           subtitle=article.subtitle,
                            body=article.body,
                            creation_date=article.creation_date,
                            reactions=counter_reactions,
@@ -59,12 +60,14 @@ def edit(article_id):
         return render_template('articles/form.html',
                                title=article.title,
                                article_title=article.title,
+                               article_subtitle=article.subtitle,
                                article_body=article.body,
                                is_publish=article.is_publish,
                                header_form='edit article',
                                submit_button='edit')
     elif request.method == 'POST':
         article.title = request.form.get("article_title")
+        article.subtitle = request.form.get("article_subtitle")
         article.body = request.form.get("article_body")
         article.is_publish = True if request.form.get("article_publish") is not None else False
         article.update()
@@ -79,9 +82,10 @@ def create():
         return render_template('articles/form.html', title='create article', header_form='create article', submit_button='create')
     elif request.method == 'POST':
         title = request.form.get("article_title")
+        subtitle = request.form.get("article_subtitle")
         body = request.form.get("article_body")
         is_publish = True if request.form.get("article_publish") is not None else False
-        article = Article(title=title, body=body, is_publish=is_publish, writer=session.get('user_id'))
+        article = Article(title=title, subtitle=subtitle, body=body, is_publish=is_publish, writer=session.get('user_id'))
         article.create()
         db.session.commit()
         return redirect(url_for('article.details', article_id=article.id))
