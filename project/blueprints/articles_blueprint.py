@@ -59,8 +59,8 @@ def edit(article_id):
     if request.method == 'GET':
         return render_template('articles/form.html',
                                title=article.title,
-                               subtitle=article.subtitle,
                                article_title=article.title,
+                               article_subtitle=article.subtitle,
                                article_body=article.body,
                                is_publish=article.is_publish,
                                header_form='edit article',
