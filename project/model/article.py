@@ -9,6 +9,7 @@ from project.model.abstract.abstract_model_attributes import AbstractModelWithAt
 # -------------------------------------
 class Article(db.Model, AbstractModelWithAttributes):
     title = db.Column(db.String(100), nullable=False)
+    subtitle = db.Column(db.String(240), nullable=True)
     body = db.Column(db.Text(), nullable=False)
     is_publish = db.Column(db.Boolean(), default=False, nullable=False)
     writer = db.Column(db.String(40), db.ForeignKey("user.id"), nullable=False)
@@ -24,6 +25,8 @@ class Article(db.Model, AbstractModelWithAttributes):
             query = query.filter_by(is_publish=filters['is_publish'])
         if 'title' in filters:
             query = query.filter(Article.title.ilike('%{}%'.format(filters['title'])))
+        if 'subtitle' in filters:
+            query = query.filter(Article.subtitle.ilike('%{}%'.format(filters['subtitle'])))
         if 'body' in filters:
             query = query.filter(Article.body.ilike('%{}%'.format(filters['body'])))
         if 'q' in filters:
