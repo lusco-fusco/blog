@@ -46,4 +46,4 @@ COPY . ${HOME}
 RUN pip install -r requirements.txt
 
 # Define entrypoint
-ENTRYPOINT ["python3.6", "app.py"]
+ENTRYPOINT ["python3", "app.py"]
