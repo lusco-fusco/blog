@@ -23,6 +23,8 @@ def details(article_id):
     # Find user reaction
     reaction = Reaction.find_one({'user_id': session.get('user_id'), 'article_id': article_id})
     user_reaction = reaction.emotion.name if reaction is not None else None
+    # Pre-process article's tags
+    tags = article.get_tags()
     return render_template('articles/details.html',
                            id=article_id,
                            title=article.title,
@@ -31,7 +33,8 @@ def details(article_id):
                            creation_date=article.creation_date,
                            reactions=counter_reactions,
                            user_reaction=user_reaction,
-                           comments=article.comments)
+                           comments=article.comments,
+                           tags=tags)
 
 
 @article_blueprint.route('/article/<article_id>', methods=['DELETE'])
@@ -57,6 +60,7 @@ def restore(article_id):
 def edit(article_id):
     article = Article.find_one({'id': article_id})
     if request.method == 'GET':
+        tags = article.get_attached_tags()
         return render_template('articles/form.html',
                                title=article.title,
                                article_title=article.title,
@@ -64,13 +68,16 @@ def edit(article_id):
                                article_body=article.body,
                                is_publish=article.is_publish,
                                header_form='edit article',
-                               submit_button='edit')
+                               submit_button='edit',
+                               tags=tags)
     elif request.method == 'POST':
         article.title = request.form.get("article_title")
         article.subtitle = request.form.get("article_subtitle")
         article.body = request.form.get("article_body")
+        tags = request.form.get("tags")
         article.is_publish = True if request.form.get("article_publish") is not None else False
         article.update()
+        article.attach_tags(tags)
         db.session.commit()
         return redirect(url_for('article.details', article_id=article.id))
 
@@ -84,9 +91,11 @@ def create():
         title = request.form.get("article_title")
         subtitle = request.form.get("article_subtitle")
         body = request.form.get("article_body")
+        tags = request.form.get("tags")
         is_publish = True if request.form.get("article_publish") is not None else False
         article = Article(title=title, subtitle=subtitle, body=body, is_publish=is_publish, writer=session.get('user_id'))
         article.create()
+        article.attach_tags(tags)
         db.session.commit()
         return redirect(url_for('article.details', article_id=article.id))
 
@@ -96,7 +105,6 @@ def search():
     filters = dict()
     q = request.args.get('q')
     writer = request.args.get('writer')
-    # TODO: tag = request.args.get('tag')
     if q is not None:
         filters['q'] = q
     if writer is not None:

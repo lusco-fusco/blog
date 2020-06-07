@@ -4,10 +4,12 @@
 <div class="articles">
      <h2>{{ articles | length }} results looking for:</h2>
      <ul>
-         {% if 'title' in filters %}
-            <li>{{ filters.get('title') }}</li>
+         {% if 'q' in filters %}
+            <h3><li>{{ filters.get('q') }}</li></h3>
          {% elif 'writer' in filters %}
-            <li>Author: {{ filters.get('writer') }}</li>
+            <h3><li>Author: {{ filters.get('writer') }}</li></h3>
+         {% elif 'tag' in filters %}
+            <h3><li>Tag: {{ filters.get('tag') }}</li></h3>
          {% endif %}
      </ul>
     {% for article in articles %}

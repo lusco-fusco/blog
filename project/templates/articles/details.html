@@ -38,7 +38,14 @@ $(function() {
     <div><span>{{creation_date.strftime('%d-%m-%Y')}}</span></div>
     <p class="article-body">{{body}}</p>
 
-     <!-- Emotions -->
+    <!-- Tags -->
+    <div class="tags">
+        {% for tag in tags %}
+            <a class="tag" href="{{ url_for('tag.related_articles', tag_id=tag) }}">{{ tag }}</a>
+        {% endfor %}
+    </div>
+
+    <!-- Emotions -->
     <div class="emotions">
         <a href="#" class="emotion idea {{ 'reaction' if user_reaction == 'IDEA' }}"
             id="idea">💡{{reactions.get('IDEA', 0)}}</a>

@@ -443,6 +443,8 @@ a.logo {
 }
 
 
+
+
 /********** Dropdown **********/
 
 .dropdown {
@@ -573,4 +575,31 @@ img {
 
 .search-input {
     color: var(--accent-color);
+}
+
+
+
+/********** Tags **********/
+.hidden {
+    display: none;
+}
+
+.tags {
+    display: flex;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.tag {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    font-weight: bold;
+    padding: 6px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-right: 6px;
+}
+
+.tag:hover {
+    color: white;
 }

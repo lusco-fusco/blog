@@ -1,9 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 <script>
-
+var simplemde = new SimpleMDE({element: document.getElementById("article_body")});
 </script>
 
 <div class="article-form">
@@ -44,8 +45,15 @@
 
         <!-- Tag Entry -->
         <div class="field">
-            <label for="article_tags">Tags:</label>
-            <input class="checkbox" type="text" id="article_tags" name="article_tags" values="{{article_tags}}"/>
+            <label for="tags">Tags:</label>
+            <!--<div id="master_div">
+                    <div id="input_autocomplete">
+                        <input id="tag-input" autocomplete="off" type="text" value="" class="form-control"/>
+                    </div>
+                    <div class="tags-categories" id="tags-categories"></div>
+            </div>
+            <input type="text" class="hidden" id="tags" name="tags" value="{{tags}}"/>-->
+            <input type="text" id="tags" name="tags" value="{{tags}}"/>
         </div>
 
         <!-- Button -->
